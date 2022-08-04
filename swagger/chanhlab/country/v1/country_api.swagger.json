@@ -1,0 +1,309 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "chanhlab/country/v1/country_api.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/countries": {
+      "get": {
+        "summary": "Country list.",
+        "operationId": "CountryAPI_ListCountries",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCountriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "CountryAPI"
+        ]
+      },
+      "post": {
+        "summary": "Create Country.",
+        "operationId": "CountryAPI_CreateCountry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateCountryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CountryAPI"
+        ]
+      }
+    },
+    "/v1/countries/{id}": {
+      "get": {
+        "summary": "Get Country.",
+        "operationId": "CountryAPI_GetCountry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CountryAPI"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Country.",
+        "operationId": "CountryAPI_DeleteCountry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CountryAPI"
+        ]
+      },
+      "put": {
+        "summary": "Update Country.",
+        "operationId": "CountryAPI_UpdateCountry",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCountryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCountryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CountryAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        },
+        "created_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "A country."
+    },
+    "v1CreateCountryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateCountryResponse": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "$ref": "#/definitions/v1Country"
+        }
+      }
+    },
+    "v1DeleteCountryResponse": {
+      "type": "object",
+      "properties": {
+        "deleted_time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1GetCountryResponse": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "$ref": "#/definitions/v1Country"
+        }
+      }
+    },
+    "v1ListCountriesResponse": {
+      "type": "object",
+      "properties": {
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Country"
+          }
+        }
+      }
+    },
+    "v1UpdateCountryRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "continent": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateCountryResponse": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "$ref": "#/definitions/v1Country"
+        }
+      }
+    }
+  }
+}

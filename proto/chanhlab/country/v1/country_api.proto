@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package chanhlab.country.v1;
+
+option csharp_namespace = "Chanhlab.Country.V1";
+option go_package = "countryv1";
+option java_multiple_files = true;
+option java_outer_classname = "CountryApiProto";
+option java_package = "com.chanhlab.country.v1";
+option objc_class_prefix = "CCX";
+option php_namespace = "Chanhlab\\Country\\V1";
+
+import "chanhlab/country/v1/country.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// Handles interaction with Countries.
+service CountryAPI {
+  // Country list.
+  rpc ListCountries(ListCountriesRequest) returns (ListCountriesResponse) {
+    option (google.api.http) = {
+      get: "/v1/countries"
+    };
+  }
+  // Get Country.
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {
+    option (google.api.http) = {
+      get: "/v1/countries/{id}"
+    };
+  }
+  // Create Country.
+  rpc CreateCountry(CreateCountryRequest) returns (CreateCountryResponse) {
+    option (google.api.http) = {
+      post: "/v1/countries"
+      body: "*"
+    };
+  }
+  // Update Country.
+  rpc UpdateCountry(UpdateCountryRequest) returns (UpdateCountryResponse) {
+    option (google.api.http) = {
+      put: "/v1/countries/{id}"
+      body: "*"
+    };
+  }
+  // Delete Country.
+  rpc DeleteCountry(DeleteCountryRequest) returns (DeleteCountryResponse) {
+    option (google.api.http) = {
+      delete: "/v1/countries/{id}"
+    };
+  }
+}
+
+message ListCountriesRequest {
+  int64 offset = 1;
+  int64 limit = 2;
+}
+
+message ListCountriesResponse {
+  repeated Country countries = 1;
+}
+
+message GetCountryRequest {
+  string id = 1;
+}
+
+message GetCountryResponse {
+  Country country = 1;
+}
+
+message CreateCountryRequest {
+  string name = 1;
+  string continent = 2;
+}
+
+message CreateCountryResponse {
+  Country country = 1;
+}
+
+message UpdateCountryRequest {
+  string id = 1;
+  string name = 2;
+  string continent = 3;
+}
+
+message UpdateCountryResponse {
+  Country country = 1;
+}
+
+message DeleteCountryRequest {
+  string id = 1;
+}
+
+message DeleteCountryResponse {
+  google.protobuf.Timestamp deleted_time = 1;
+}

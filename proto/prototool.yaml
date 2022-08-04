@@ -1,0 +1,37 @@
+protoc:
+  version: 3.11.0
+  includes:
+    - ../../../grpc-ecosystem/grpc-gateway/third_party/googleapis
+
+lint:
+  group: uber2
+  ignores:
+    - id: ENUM_FIELD_PREFIXES_EXCEPT_MESSAGE
+      files:
+        - chanhlab/gender/v1/gender.proto
+    - id: ENUM_FIELD_NAMES_UPPER_SNAKE_CASE
+      files:
+        - chanhlab/gender/v1/gender.proto
+
+generate:
+  go_options:
+    import_path: go.chanhlab.com/protobuf/proto
+
+    # Extra modifiers to include with Mfile=package.
+    extra_modifiers:
+      google/api/annotations.proto: google.golang.org/genproto/googleapis/api/annotations
+      google/protobuf/timestamp.proto: github.com/golang/protobuf/ptypes/timestamp
+
+  # The list of plugins.
+  plugins:
+    - name: go
+      type: go
+      flags: plugins=grpc
+      output: ../go
+    - name: grpc-gateway
+      type: go
+      output: ../go
+    - name: swagger
+      output: ../swagger
+
+

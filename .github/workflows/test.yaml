@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  IMAGE_NAME: protobuf
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Run Linter
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.14.x
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Install packages
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          make install
+      - name: Run linters
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          make lint
