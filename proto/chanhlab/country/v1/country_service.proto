@@ -2,20 +2,14 @@ syntax = "proto3";
 
 package chanhlab.country.v1;
 
-option csharp_namespace = "Chanhlab.Country.V1";
-option go_package = "countryv1";
-option java_multiple_files = true;
-option java_outer_classname = "CountryApiProto";
-option java_package = "com.chanhlab.country.v1";
-option objc_class_prefix = "CCX";
-option php_namespace = "Chanhlab\\Country\\V1";
+option go_package = "github.com.chanhlab.com/chanhlab/protobuf/gen/country/v1";
 
 import "chanhlab/country/v1/country.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 // Handles interaction with Countries.
-service CountryAPI {
+service CountryService {
   // Country list.
   rpc ListCountries(ListCountriesRequest) returns (ListCountriesResponse) {
     option (google.api.http) = {
