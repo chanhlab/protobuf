@@ -3,6 +3,15 @@ SHELL := /bin/bash -o pipefail
 UNAME_OS := $(shell uname -s)
 UNAME_ARCH := $(shell uname -m)
 
+TMP_BASE := .tmp
+TMP := $(TMP_BASE)/$(UNAME_OS)/$(UNAME_ARCH)
+TMP_BIN = $(TMP)/bin
+TMP_VERSIONS := $(TMP)/versions
+
+export GO111MODULE := on
+export GOBIN := $(abspath $(TMP_BIN))
+export PATH := $(GOBIN):$(PATH)
+
 .PHONY: env
 env:
 	@echo "GOPATH: $(GOPATH)"
