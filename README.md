@@ -5,14 +5,18 @@
 ### Create a new proto
 
 ```
-prototool create chanhlab/event/v1/event.proto
+touch chanhlab/sample/v1/sample.proto
+```
+
+### Linter
+
+```
+make lint
 ```
 
 ### Generate protobuf
 
 ```
-prototool generate
-// or
 make generate
 ```
 
