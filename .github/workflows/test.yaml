@@ -12,21 +12,21 @@ env:
   IMAGE_NAME: protobuf
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
-    name: Run Linter
+    name: Run tests
     steps:
       - name: Install Go
         uses: actions/setup-go@v1
         with:
           go-version: 1.14.x
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Install packages
         run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
           make install
       - name: Run linters
         run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
           make lint
