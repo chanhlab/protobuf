@@ -25,7 +25,7 @@ lint:
 .PHONY: generate
 generate:
 	@echo "## Generate"
-	rm -rf gen
+	rm -rf generated
 	cd proto/ && go run github.com/bufbuild/buf/cmd/buf mod update
 	go run github.com/bufbuild/buf/cmd/buf generate proto
 
