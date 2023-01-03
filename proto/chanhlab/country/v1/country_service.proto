@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package chanhlab.country.v1;
 
-option go_package = "github.com.chanhlab.com/chanhlab/protobuf/gen/country/v1";
+option go_package = "github.com.chanhlab.com/chanhlab/protobuf/generated/country/v1";
 
 import "chanhlab/country/v1/country.proto";
 import "google/api/annotations.proto";
