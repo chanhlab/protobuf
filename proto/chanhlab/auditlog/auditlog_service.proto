@@ -3,4 +3,3 @@ syntax = "proto3";
 package chanhlab.auditlog.v1;
 option go_package = "github.com.chanhlab.com/chanhlab/protobuf/generated/auditlog/v1";
 import "google/protobuf/timestamp.proto";
-
