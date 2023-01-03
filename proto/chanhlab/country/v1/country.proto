@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package chanhlab.country.v1;
 option go_package = "github.com.chanhlab.com/chanhlab/protobuf/gen/country/v1";
-
 import "google/protobuf/timestamp.proto";
 
 // A country.
@@ -12,4 +11,48 @@ message Country {
   string continent = 3;
   google.protobuf.Timestamp created_time = 4;
   google.protobuf.Timestamp updated_time = 5;
+}
+
+message ListCountriesRequest {
+  int64 offset = 1;
+  int64 limit = 2;
+}
+
+message ListCountriesResponse {
+  repeated Country countries = 1;
+}
+
+message GetCountryRequest {
+  string id = 1;
+}
+
+message GetCountryResponse {
+  Country country = 1;
+}
+
+message CreateCountryRequest {
+  string name = 1;
+  string continent = 2;
+}
+
+message CreateCountryResponse {
+  Country country = 1;
+}
+
+message UpdateCountryRequest {
+  string id = 1;
+  string name = 2;
+  string continent = 3;
+}
+
+message UpdateCountryResponse {
+  Country country = 1;
+}
+
+message DeleteCountryRequest {
+  string id = 1;
+}
+
+message DeleteCountryResponse {
+  google.protobuf.Timestamp deleted_time = 1;
 }
